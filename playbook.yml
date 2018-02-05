@@ -1,0 +1,29 @@
+---
+- hosts: all
+  #gather_facts: true
+  become: true
+
+  vars:
+    users:
+      gsoyka:
+        github_username: https://github.com/gsoyka.keys
+       
+  tasks:
+    - name: Add Users
+      user:
+        name: "{{ item.key }}"
+      with_dict: "{{ users }}"
+    
+    - name: Add SSH keys from Github
+      authorized_key:
+        user: "{{ item.key }}"
+        key: "{{ item.value.github_username }}"
+      with_dict: "{{ users }}"  
+
+    - name: Configure sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: "{{ item.key }} ALL=(ALL) NOPASSWD: ALL, !/bin/su"
+        validate: '/usr/sbin/visudo -cf %s'
+      with_dict: "{{ users }}"
