@@ -15,7 +15,7 @@
     - name: Add SSH keys from Github
       authorized_key:
         user: "{{ item.key }}"
-        key: "{{ item.value.github_username }}"
+        key: "https://github.com/{{ item.value.github_username }}.keys"
       with_dict: "{{ users }}"  
 
     - name: Configure sudoers file
