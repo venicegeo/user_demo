@@ -3,11 +3,9 @@
   #gather_facts: true
   become: true
 
-  vars:
-    users:
-      gsoyka:
-        github_username: https://github.com/gsoyka.keys
-       
+  vars_files: 
+    - users.yml
+
   tasks:
     - name: Add Users
       user:
