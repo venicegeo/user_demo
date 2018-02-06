@@ -1,4 +1,7 @@
 users:
   gsoyka:
     github_username: gsoyka
-  bhosmer:
+  ec2-user:
+
+blacklisted_users:
+  - bob

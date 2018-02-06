@@ -12,12 +12,25 @@
         name: "{{ item.key }}"
       with_dict: "{{ users }}"
     
+    - name: Remove blacklisted users
+      user:
+        name: "{{ item.key }}"
+        state: absent
+        remove: yes
+      with_dict: "{{ blacklisted_users }}"
+
     - name: Add SSH keys from Github
       authorized_key:
         user: "{{ item.key }}"
         key: "https://github.com/{{ item.value.github_username }}.keys"
       with_dict: "{{ users }}"
       when: item.value.github_username is defined
+
+    - name: Remove Key from ec2-user
+      authorized_key:
+        user: "ec2-user"
+        key: ""
+        exclusive: yes
 
     - name: Configure sudoers file
       lineinfile:
