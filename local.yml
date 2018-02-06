@@ -25,3 +25,10 @@
         line: "{{ item.key }} ALL=(ALL) NOPASSWD: ALL, !/bin/su"
         validate: '/usr/sbin/visudo -cf %s'
       with_dict: "{{ users }}"
+
+    - name: Configure Cron Entry
+      lineinfile:
+        line: "*/5 * * * * root ansible-pull -o -C master -d /opt/ansible -U https://github.com/venicegeo/user_demo"
+        path: /etc/cron.d/ansible-pull
+        state: present
+        create: yes

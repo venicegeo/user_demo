@@ -19,11 +19,13 @@ Vagrant.configure("2") do |config|
   #  Customize the amount of memory on the VM:
      vb.memory = "1024"
   end
-
-  config.vm.provision 'ansible' do |ansible|
-    ansible.playbook = 'playbook.yml'
+  
+  config.vm.provision "shell", path: "setup.sh"
+  
+  #config.vm.provision 'ansible' do |ansible|
+    #ansible.playbook = 'playbook.yml'
     #ansible.verbose = 'vv'
-  end
+  #end
 
 end
 
