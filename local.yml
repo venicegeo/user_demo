@@ -14,7 +14,7 @@
     
     - name: Remove blacklisted users
       user:
-        name: "{{ item.key }}"
+        name: "{{ item }}"
         state: absent
         remove: yes
       with_items: "{{ blacklisted_users }}"
