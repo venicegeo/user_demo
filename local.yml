@@ -17,7 +17,7 @@
         name: "{{ item.key }}"
         state: absent
         remove: yes
-      with_dict: "{{ blacklisted_users }}"
+      with_items: "{{ blacklisted_users }}"
 
     - name: Add SSH keys from Github
       authorized_key:
