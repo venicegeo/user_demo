@@ -16,7 +16,8 @@
       authorized_key:
         user: "{{ item.key }}"
         key: "https://github.com/{{ item.value.github_username }}.keys"
-      with_dict: "{{ users }}"  
+      with_dict: "{{ users }}"
+      when: item.value.github_username is defined
 
     - name: Configure sudoers file
       lineinfile:
@@ -32,3 +33,6 @@
         path: /etc/cron.d/ansible-pull
         state: present
         create: yes
+        owner: root
+        group: root
+        mode: 0644
