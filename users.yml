@@ -1,7 +1,12 @@
+# Specify the list of users that should be present via a YML dictionary
+# If SSH access is needed, specify the user's github username, which will be used
+# to pull down thier public key(s) to enable ssh access.
 users:
   gsoyka:
     github_username: gsoyka
   ec2-user:
 
+# Specify a list of usernames to remove, NOTE: Any username specified here will
+# be removed, along with the contents of thier home directory, use with caution.
 blacklisted_users:
   - bob
