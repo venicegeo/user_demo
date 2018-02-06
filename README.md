@@ -14,9 +14,9 @@ Simply clone the repo and run `vagrant up`.  Once provisioning is complete, log 
 4. Subsequent updates pushed to this repo will be pulled down and applied within that 5 minute time frame.
 
 ## Log in as yourself via SSH
-Add your user to the `users.yml` file, then run `vagrant up --provision`.
+Add your user to the `users.yml` file, then wait ~5 minutes.
 
-Once it completes, try logging in: `ssh youruser@192.168.10.25`
+Once 5 minutes have passed, try logging in: `ssh youruser@192.168.10.25`
 
 ## Info
 Users are stored in the `users.yml` file, along with their github username, which allows us to pull public keys and copy them into place.
